@@ -4,8 +4,10 @@ import { HiPencilAlt } from 'react-icons/hi'
 import Link from 'next/link'
 
 const getTopics = async () => {
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  
     try {
-      const res = await fetch('http://localhost:3000/api/topics', { cache: 'no-store' });
+      const res = await fetch(`${apiBaseUrl}/api/topics`, { cache: 'no-store' });
   
       if (!res.ok) {
         throw new Error('Failed to fetch topics');
@@ -15,7 +17,6 @@ const getTopics = async () => {
       return data;
     } catch (error) {
       console.error('Error loading topics:', error);
-    
       return { topics: [] };
     }
   };
